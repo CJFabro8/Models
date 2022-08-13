@@ -1,0 +1,377 @@
+
+--Converted with ttyyuu12345's model to script plugin v4
+function sandbox(var,func)
+	local env = getfenv(func)
+	local newenv = setmetatable({},{
+		__index = function(self,k)
+			if k=="script" then
+				return var
+			else
+				return env[k]
+			end
+		end,
+	})
+	setfenv(func,newenv)
+	return func
+end
+cors = {}
+mas = Instance.new("Model",game:GetService("Lighting"))
+Model0 = Instance.new("Model")
+Part1 = Instance.new("Part")
+SpecialMesh2 = Instance.new("SpecialMesh")
+Script3 = Instance.new("Script")
+Script4 = Instance.new("Script")
+Script5 = Instance.new("Script")
+Sound6 = Instance.new("Sound")
+Script7 = Instance.new("Script")
+Sound8 = Instance.new("Sound")
+Script9 = Instance.new("Script")
+Sound10 = Instance.new("Sound")
+Script11 = Instance.new("Script")
+Sound12 = Instance.new("Sound")
+Script13 = Instance.new("Script")
+Part14 = Instance.new("Part")
+Script15 = Instance.new("Script")
+ParticleEmitter16 = Instance.new("ParticleEmitter")
+ParticleEmitter17 = Instance.new("ParticleEmitter")
+Part18 = Instance.new("Part")
+Script19 = Instance.new("Script")
+SpecialMesh20 = Instance.new("SpecialMesh")
+Model0.Name = "Tornado by the2008s"
+Model0.Parent = mas
+Part1.Name = "Tornado"
+Part1.Parent = Model0
+Part1.CFrame = CFrame.new(160.580627, 227.5, -229.55835, 1, 0, 0, 0, -1, 0, 0, 0, -1)
+Part1.Orientation = Vector3.new(0, 180, 180)
+Part1.Position = Vector3.new(160.58062744140625, 227.5, -229.558349609375)
+Part1.Rotation = Vector3.new(-180, 0, 0)
+Part1.Size = Vector3.new(90, 455, 90)
+Part1.Anchored = true
+Part1.BottomSurface = Enum.SurfaceType.Smooth
+Part1.CanCollide = false
+Part1.TopSurface = Enum.SurfaceType.Weld
+Part1.FormFactor = Enum.FormFactor.Symmetric
+Part1.formFactor = Enum.FormFactor.Symmetric
+SpecialMesh2.Parent = Part1
+SpecialMesh2.MeshId = "http://www.roblox.com/asset/?id=36755354"
+SpecialMesh2.Scale = Vector3.new(200, 250, 200)
+SpecialMesh2.TextureId = "rbxassetid://38426946"
+SpecialMesh2.MeshType = Enum.MeshType.FileMesh
+Script3.Name = "Animate"
+Script3.Parent = Part1
+table.insert(cors,sandbox(Script3,function()
+-- Made by the2008s, 7/10/2018 --
+
+local tor = script.Parent
+local mesh = tor.Mesh
+local rootpos = tor.Position
+
+local restingTime = math.random(1, 3)
+local maxMovingDistance = 50
+local maxAllowedRange = 50*20
+
+local spin = coroutine.resume(coroutine.create(function()
+	while wait() do
+		tor.CFrame = tor.CFrame * CFrame.fromEulerAnglesXYZ(0, math.rad(-2), 0)
+	end
+end))
+
+--[[local grow = coroutine.resume(coroutine.create(function()
+	while true do
+		for a = 1, 10 do
+			mesh.Scale = mesh.Scale + Vector3.new(5, 0, 5)
+			wait(0.1)
+		end
+		wait(0.1)
+		for b = 1, 10 do
+			mesh.Scale = mesh.Scale - Vector3.new(5, 0, 5)
+			wait(0.1)
+		end
+		wait(0.1)
+	end
+end))]]--
+
+local move = coroutine.resume(coroutine.create(function()
+	while wait(restingTime) do
+		local pickedpos = tor.Position + Vector3.new(math.random(-maxMovingDistance, maxMovingDistance), 0, math.random(-maxMovingDistance, maxMovingDistance))
+		local dist = (pickedpos - tor.Position).magnitude
+		local unit = (pickedpos - tor.Position).unit
+		-- move the tornado in a random position
+		for i = 0, dist, 1 do
+			local currentrotation = tor.CFrame - tor.CFrame.p
+			tor.CFrame = CFrame.new(tor.Position + unit * dist / 25) * currentrotation
+			wait()
+		end
+		--check if the tornado goes too far, if so it will go back to it's root position
+		if (pickedpos - rootpos).magnitude >= maxAllowedRange then
+			local ldist = (pickedpos - rootpos).magnitude
+			local lunit = (pickedpos - rootpos).unit
+			print("Tornado went too far, going back (distance: " ..ldist.. " studs away)")
+			for i = 0, ldist, 1 do
+				local currentrotation = tor.CFrame - tor.CFrame.p
+				tor.CFrame = CFrame.new(tor.Position - lunit * ldist / (ldist*0.75)) * currentrotation
+				wait()
+			end
+		end
+	end
+end))
+
+end))
+Script4.Name = "Hazard"
+Script4.Parent = Part1
+table.insert(cors,sandbox(Script4,function()
+-- Made by the2008s, 7/10/2018 --
+-- The calculating is to mainly make the tornado looks realistic, you can change it if you want
+
+local tor = script.Parent
+local debounce = false
+local attackrange = 25
+
+--[[function onTouched(p)
+	if not p:FindFirstChild("TornadoSuckingForce") then
+		if debounce == false then
+			debounce = true
+			local bp = Instance.new("BodyPosition")
+			bp.Name = "TornadoSuckingForce"
+			bp.MaxForce = Vector3.new(2000 * p:GetMass(), 2000 * p:GetMass(), 2000 * p:GetMass())
+			bp.Parent = p
+			spawn(function()
+				local height = 0
+				repeat
+					bp.Position = (CFrame.new(tor.Position - Vector3.new(0, tor.Size.Y/2, 0))*CFrame.Angles(0,math.pi*2*((tick()/5)%1),0)*CFrame.new(tor.Size.X/2 + height/50, height, 0)).p -- the x will make the parts get farther away from the tornado, and y will make it move up
+					height = height + (tor.Size.Y/100*0.5) -- aka 2% of it's Y size
+					wait()
+				until height == height * tor.Size.Y/5 -- a very large number but it might fit the looks
+				bp:remove()
+			end)
+			p.Anchored = false
+			p:BreakJoints()
+			game.Debris:AddItem(p, 60)
+			wait(0.1)
+			debounce = false
+		end
+	end
+end]]--
+
+local near = coroutine.resume(coroutine.create(function()
+	while wait() do
+		local region = Region3.new(
+			Vector3.new(tor.Position.X - tor.Size.X/2 - attackrange, tor.Position.Y - tor.Size.Y/2 - attackrange, tor.Position.Z - tor.Size.Z/2 - attackrange),
+	  		Vector3.new(tor.Position.X + tor.Size.X/2 + attackrange, tor.Position.Y + tor.Size.Y/2 + attackrange, tor.Position.Z + tor.Size.Z/2 + attackrange)
+		)
+		local parts = workspace:FindPartsInRegion3(region)
+		for i,p in pairs(parts) do
+			if p:IsA("BasePart") and p.CanCollide == true and p:GetMass() < 1000000 then
+				if not p:FindFirstChild("TornadoSuckingForce") then
+					-- enssential stuff
+					local bp = Instance.new("BodyPosition")
+					bp.Name = "TornadoSuckingForce"
+					bp.MaxForce = Vector3.new(2000 * p:GetMass(), 2000 * p:GetMass(), 2000 * p:GetMass())
+					bp.Parent = p
+					-- this will let the parts handle itself, instead of a whole script handling everything to reduce lag
+					local torvalue = Instance.new("ObjectValue")
+					torvalue.Name = "WhichTornado"
+					torvalue.Value = tor
+					torvalue.Parent = p
+					local scr = script.SuckingScript:Clone()
+					scr.Parent = p
+					scr.Disabled = false
+					-- extra stuff
+					local bav = Instance.new("BodyAngularVelocity")
+					bav.Name = "SuckingRotation"
+					bav.MaxTorque = Vector3.new(4000 * p:GetMass(), 4000 * p:GetMass(), 4000 * p:GetMass())
+					bav.AngularVelocity = Vector3.new(math.random(1,25), math.random(1,25), math.random(1,25))
+					bav.Parent = p
+				end
+			end
+		end
+	end
+end))
+
+--tor.Touched:connect(onTouched)
+
+end))
+Script5.Name = "SuckingScript"
+Script5.Parent = Script4
+table.insert(cors,sandbox(Script5,function()
+local sp = script.Parent
+repeat
+	wait()
+until sp:FindFirstChild("WhichTornado")
+local tor = sp:FindFirstChild("WhichTornado").Value
+local bp = sp:FindFirstChild("TornadoSuckingForce")
+
+sp.Anchored = false
+sp:BreakJoints()
+game.Debris:AddItem(sp, 60)
+local height = 0
+repeat
+	bp.Position = (CFrame.new(tor.Position - Vector3.new(0, tor.Size.Y/2, 0))*CFrame.Angles(0,math.pi*2*((tick()/5)%1),0)*CFrame.new(tor.Size.X/2 + height/30, height, 0)).p -- the x will make the parts get farther away from the tornado, and y will make it move up
+	height = height + (tor.Size.Y/100*0.5) -- aka 2% of it's Y size
+	wait()
+until height == tor.Size.Y -- a very large number but it might fit the looks
+bp:remove()
+
+end))
+Sound6.Name = "wind"
+Sound6.Parent = Part1
+Sound6.Looped = true
+Sound6.Pitch = 0.699999988079071
+Sound6.PlaybackSpeed = 0.699999988079071
+Sound6.SoundId = "rbxassetid://318451789"
+Sound6.Volume = 1
+Script7.Name = "runSound"
+Script7.Parent = Sound6
+table.insert(cors,sandbox(Script7,function()
+script.Parent:Play()
+script:remove()
+end))
+Sound8.Name = "wind2"
+Sound8.Parent = Part1
+Sound8.Looped = true
+Sound8.SoundId = "rbxassetid://184973424"
+Sound8.Volume = 1
+Script9.Name = "runSound"
+Script9.Parent = Sound8
+table.insert(cors,sandbox(Script9,function()
+script.Parent:Play()
+script:remove()
+end))
+Sound10.Name = "wind"
+Sound10.Parent = Part1
+Sound10.Looped = true
+Sound10.Pitch = 0.699999988079071
+Sound10.PlaybackSpeed = 0.699999988079071
+Sound10.SoundId = "rbxassetid://318451789"
+Sound10.Volume = 1
+Script11.Name = "runSound"
+Script11.Parent = Sound10
+table.insert(cors,sandbox(Script11,function()
+script.Parent:Play()
+script:remove()
+end))
+Sound12.Name = "wind2"
+Sound12.Parent = Part1
+Sound12.Looped = true
+Sound12.SoundId = "rbxassetid://184973424"
+Sound12.Volume = 1
+Script13.Name = "runSound"
+Script13.Parent = Sound12
+table.insert(cors,sandbox(Script13,function()
+script.Parent:Play()
+script:remove()
+end))
+Part14.Name = "Smoke"
+Part14.Parent = Model0
+Part14.CFrame = CFrame.new(160.580627, 11.0000305, -229.55835, 1, 0, 0, 0, 1, 8.74227766e-08, 0, -8.74227766e-08, 1)
+Part14.Position = Vector3.new(160.58062744140625, 11.000030517578125, -229.558349609375)
+Part14.Transparency = 1
+Part14.Size = Vector3.new(70, 22, 70)
+Part14.Anchored = true
+Part14.BottomSurface = Enum.SurfaceType.Smooth
+Part14.CanCollide = false
+Part14.TopSurface = Enum.SurfaceType.Weld
+Part14.FormFactor = Enum.FormFactor.Symmetric
+Part14.formFactor = Enum.FormFactor.Symmetric
+Script15.Name = "Spin&Follow"
+Script15.Parent = Part14
+table.insert(cors,sandbox(Script15,function()
+-- Made by the2008s, 7/10/2018 --
+
+local dust = script.Parent
+local tor = script.Parent.Parent.Tornado
+local yoffset = tor.Size.Y / 2 -- the y position that the dust will be at when it follows the tornado
+
+local spin = coroutine.resume(coroutine.create(function()
+	local randomAngle = math.random(1, 10)/10
+	while wait() do
+		dust.CFrame = dust.CFrame * CFrame.fromEulerAnglesXYZ(0, math.rad(randomAngle), 0)
+	end
+end))
+
+local follow = coroutine.resume(coroutine.create(function()
+	while wait() do
+		local currentrotation = dust.CFrame - dust.CFrame.p
+		local ypos = tor.Position.Y - yoffset
+		dust.CFrame = CFrame.new(tor.Position.X, ypos, tor.Position.Z) * currentrotation
+	end
+end))
+end))
+ParticleEmitter16.Name = "BigSmoke(lol)"
+ParticleEmitter16.Parent = Part14
+ParticleEmitter16.Speed = NumberRange.new(25, 25)
+ParticleEmitter16.Color = ColorSequence.new(Color3.new(0.368627, 0.368627, 0.368627),Color3.new(0.368627, 0.368627, 0.368627))
+ParticleEmitter16.LightInfluence = 1
+ParticleEmitter16.Texture = "rbxassetid://494864527"
+ParticleEmitter16.Transparency = NumberSequence.new(0,1)
+ParticleEmitter16.Size = NumberSequence.new(10,10,1)
+ParticleEmitter16.Acceleration = Vector3.new(0, -1, 0)
+ParticleEmitter16.Lifetime = NumberRange.new(3, 7)
+ParticleEmitter16.Rate = 250
+ParticleEmitter16.RotSpeed = NumberRange.new(180, 180)
+ParticleEmitter16.SpreadAngle = Vector2.new(-180, 180)
+ParticleEmitter16.VelocitySpread = -180
+ParticleEmitter17.Name = "SmallParticles"
+ParticleEmitter17.Parent = Part14
+ParticleEmitter17.Speed = NumberRange.new(50, 50)
+ParticleEmitter17.Rotation = NumberRange.new(1000, 1000)
+ParticleEmitter17.Color = ColorSequence.new(Color3.new(0, 0, 0),Color3.new(0, 0, 0))
+ParticleEmitter17.Texture = "http://www.roblox.com/asset/?id=180306779"
+ParticleEmitter17.Transparency = NumberSequence.new(0,1,1)
+ParticleEmitter17.Size = NumberSequence.new(70,70)
+ParticleEmitter17.Lifetime = NumberRange.new(5, 5)
+ParticleEmitter17.Rate = 50
+ParticleEmitter17.RotSpeed = NumberRange.new(-250, 250)
+ParticleEmitter17.SpreadAngle = Vector2.new(50, 50)
+ParticleEmitter17.VelocitySpread = 50
+Part18.Name = "InsideOutTornado"
+Part18.Parent = Model0
+Part18.CFrame = CFrame.new(160.580627, 227.5, -229.55835, -1, 0, 0, 0, 1, -8.74227766e-08, -0, -8.74227766e-08, -1)
+Part18.Orientation = Vector3.new(0, 180, 0)
+Part18.Position = Vector3.new(160.58062744140625, 227.5, -229.558349609375)
+Part18.Rotation = Vector3.new(180, 0, -180)
+Part18.Size = Vector3.new(90, 455, 90)
+Part18.Anchored = true
+Part18.BottomSurface = Enum.SurfaceType.Smooth
+Part18.CanCollide = false
+Part18.TopSurface = Enum.SurfaceType.Weld
+Part18.FormFactor = Enum.FormFactor.Symmetric
+Part18.formFactor = Enum.FormFactor.Symmetric
+Script19.Name = "Spin&Follow"
+Script19.Parent = Part18
+table.insert(cors,sandbox(Script19,function()
+-- Made by the2008s, 7/10/2018 --
+
+local torn = script.Parent
+local tor = script.Parent.Parent.Tornado
+local yoffset = tor.Size.Y / 2 -- the y position that the torn will be at when it follows the tornado
+
+local spin = coroutine.resume(coroutine.create(function()
+	while wait() do
+		torn.CFrame = torn.CFrame * CFrame.fromEulerAnglesXYZ(0, math.rad(2), 0) -- angle should be negative as the entire part is negative
+	end
+end))
+
+local follow = coroutine.resume(coroutine.create(function()
+	while wait() do
+		local currentrotation = torn.CFrame - torn.CFrame.p
+		local ypos = tor.Position.Y - yoffset
+		torn.CFrame = CFrame.new(tor.Position) * currentrotation
+	end
+end))
+end))
+SpecialMesh20.Parent = Part18
+SpecialMesh20.MeshId = "http://www.roblox.com/asset/?id=36755354"
+SpecialMesh20.Scale = Vector3.new(-200, -250, -200)
+SpecialMesh20.TextureId = "rbxassetid://38426946"
+SpecialMesh20.MeshType = Enum.MeshType.FileMesh
+for i,v in pairs(mas:GetChildren()) do
+	v.Parent = workspace
+	pcall(function() v:MakeJoints() end)
+end
+mas:Destroy()
+for i,v in pairs(cors) do
+	spawn(function()
+		pcall(v)
+	end)
+end
