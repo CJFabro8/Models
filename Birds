@@ -1,0 +1,410 @@
+
+--Converted with ttyyuu12345's model to script plugin v4
+function sandbox(var,func)
+	local env = getfenv(func)
+	local newenv = setmetatable({},{
+		__index = function(self,k)
+			if k=="script" then
+				return var
+			else
+				return env[k]
+			end
+		end,
+	})
+	setfenv(func,newenv)
+	return func
+end
+cors = {}
+mas = Instance.new("Model",game:GetService("Lighting"))
+Model0 = Instance.new("Model")
+Part1 = Instance.new("Part")
+Script2 = Instance.new("Script")
+BodyVelocity3 = Instance.new("BodyVelocity")
+SpecialMesh4 = Instance.new("SpecialMesh")
+Part5 = Instance.new("Part")
+Script6 = Instance.new("Script")
+BodyVelocity7 = Instance.new("BodyVelocity")
+SpecialMesh8 = Instance.new("SpecialMesh")
+Part9 = Instance.new("Part")
+Script10 = Instance.new("Script")
+BodyVelocity11 = Instance.new("BodyVelocity")
+SpecialMesh12 = Instance.new("SpecialMesh")
+Part13 = Instance.new("Part")
+Script14 = Instance.new("Script")
+BodyVelocity15 = Instance.new("BodyVelocity")
+SpecialMesh16 = Instance.new("SpecialMesh")
+Part17 = Instance.new("Part")
+Script18 = Instance.new("Script")
+BodyVelocity19 = Instance.new("BodyVelocity")
+SpecialMesh20 = Instance.new("SpecialMesh")
+Part21 = Instance.new("Part")
+Script22 = Instance.new("Script")
+BodyVelocity23 = Instance.new("BodyVelocity")
+SpecialMesh24 = Instance.new("SpecialMesh")
+Part25 = Instance.new("Part")
+Script26 = Instance.new("Script")
+BodyVelocity27 = Instance.new("BodyVelocity")
+SpecialMesh28 = Instance.new("SpecialMesh")
+Part29 = Instance.new("Part")
+Script30 = Instance.new("Script")
+BodyVelocity31 = Instance.new("BodyVelocity")
+SpecialMesh32 = Instance.new("SpecialMesh")
+Part33 = Instance.new("Part")
+Script34 = Instance.new("Script")
+BodyVelocity35 = Instance.new("BodyVelocity")
+SpecialMesh36 = Instance.new("SpecialMesh")
+Part37 = Instance.new("Part")
+Script38 = Instance.new("Script")
+BodyVelocity39 = Instance.new("BodyVelocity")
+SpecialMesh40 = Instance.new("SpecialMesh")
+Model0.Parent = mas
+Part1.Name = "Bird"
+Part1.Parent = Model0
+Part1.CFrame = CFrame.new(69.2105713, 104.049927, -159.452393, 1.67191611e-05, -1.92586197e-15, 1, 2.04003481e-15, 1, 1.92674881e-15, -1, 2.04003481e-15, 1.67191647e-05)
+Part1.Orientation = Vector3.new(0, 90, 0)
+Part1.Position = Vector3.new(69.2105712890625, 104.0499267578125, -159.452392578125)
+Part1.Rotation = Vector3.new(0, 90, 0)
+Part1.Color = Color3.new(0.0666667, 0.0666667, 0.0666667)
+Part1.Size = Vector3.new(3.200000047683716, 4.199999809265137, 5.199999809265137)
+Part1.BottomSurface = Enum.SurfaceType.Smooth
+Part1.BrickColor = BrickColor.new("Really black")
+Part1.TopSurface = Enum.SurfaceType.Smooth
+Part1.brickColor = BrickColor.new("Really black")
+Part1.FormFactor = Enum.FormFactor.Custom
+Part1.formFactor = Enum.FormFactor.Custom
+Script2.Name = "MoveScript"
+Script2.Parent = Part1
+table.insert(cors,sandbox(Script2,function()
+-- Adjust the movement of the firefly, allowing them to roam around.
+
+local Fly = script.Parent
+
+while true do -- Alter the flies movement direction every once a while to make it roam around
+	Fly.BodyVelocity.velocity = Vector3.new(math.random(-100,100)*0.5,math.random(-100,100)*0.1,math.random(-100,100)*0.5)
+	wait(math.random(10,25)*0.1)
+end
+end))
+BodyVelocity3.Parent = Part1
+BodyVelocity3.MaxForce = Vector3.new(40000, 40000, 40000)
+BodyVelocity3.maxForce = Vector3.new(40000, 40000, 40000)
+SpecialMesh4.Parent = Part1
+SpecialMesh4.MeshId = "http://www.roblox.com/asset/?id=152053742 "
+SpecialMesh4.Scale = Vector3.new(5.333308696746826, 6.999999046325684, 4.727225303649902)
+SpecialMesh4.TextureId = "http://www.roblox.com/asset/?id=152053754 "
+SpecialMesh4.MeshType = Enum.MeshType.FileMesh
+Part5.Name = "Bird"
+Part5.Parent = Model0
+Part5.CFrame = CFrame.new(50.2104797, 103.249939, -160.452698, 1.62125252e-05, -1.99351533e-15, 1, 1.95676808e-15, 1, 1.99450276e-15, -1, 1.95676808e-15, 1.62125289e-05)
+Part5.Orientation = Vector3.new(0, 90, 0)
+Part5.Position = Vector3.new(50.210479736328125, 103.24993896484375, -160.45269775390625)
+Part5.Rotation = Vector3.new(0, 90, 0)
+Part5.Color = Color3.new(0.0666667, 0.0666667, 0.0666667)
+Part5.Size = Vector3.new(3.200000047683716, 4.199999809265137, 5.199999809265137)
+Part5.BottomSurface = Enum.SurfaceType.Smooth
+Part5.BrickColor = BrickColor.new("Really black")
+Part5.TopSurface = Enum.SurfaceType.Smooth
+Part5.brickColor = BrickColor.new("Really black")
+Part5.FormFactor = Enum.FormFactor.Custom
+Part5.formFactor = Enum.FormFactor.Custom
+Script6.Name = "MoveScript"
+Script6.Parent = Part5
+table.insert(cors,sandbox(Script6,function()
+-- Adjust the movement of the firefly, allowing them to roam around.
+
+local Fly = script.Parent
+
+while true do -- Alter the flies movement direction every once a while to make it roam around
+	Fly.BodyVelocity.velocity = Vector3.new(math.random(-100,100)*0.5,math.random(-100,100)*0.1,math.random(-100,100)*0.5)
+	wait(math.random(10,25)*0.1)
+end
+end))
+BodyVelocity7.Parent = Part5
+BodyVelocity7.MaxForce = Vector3.new(40000, 40000, 40000)
+BodyVelocity7.maxForce = Vector3.new(40000, 40000, 40000)
+SpecialMesh8.Parent = Part5
+SpecialMesh8.MeshId = "http://www.roblox.com/asset/?id=152053742 "
+SpecialMesh8.Scale = Vector3.new(5.333308696746826, 6.999999046325684, 4.727225303649902)
+SpecialMesh8.TextureId = "http://www.roblox.com/asset/?id=152053754 "
+SpecialMesh8.MeshType = Enum.MeshType.FileMesh
+Part9.Name = "Bird"
+Part9.Parent = Model0
+Part9.CFrame = CFrame.new(58.0134888, 105.449951, -164.452179, -1.8189894e-12, 5.70900206e-19, 1, -2.59615357e-31, 1, 5.70900206e-19, -1, 2.59615357e-31, 1.8189894e-12)
+Part9.Orientation = Vector3.new(0, 90, 0)
+Part9.Position = Vector3.new(58.01348876953125, 105.449951171875, -164.45217895507812)
+Part9.Rotation = Vector3.new(0, 90, 0)
+Part9.Color = Color3.new(0.0666667, 0.0666667, 0.0666667)
+Part9.Size = Vector3.new(3.200000047683716, 4.199999809265137, 5.199999809265137)
+Part9.BottomSurface = Enum.SurfaceType.Smooth
+Part9.BrickColor = BrickColor.new("Really black")
+Part9.TopSurface = Enum.SurfaceType.Smooth
+Part9.brickColor = BrickColor.new("Really black")
+Part9.FormFactor = Enum.FormFactor.Custom
+Part9.formFactor = Enum.FormFactor.Custom
+Script10.Name = "MoveScript"
+Script10.Parent = Part9
+table.insert(cors,sandbox(Script10,function()
+-- Adjust the movement of the firefly, allowing them to roam around.
+
+local Fly = script.Parent
+
+while true do -- Alter the flies movement direction every once a while to make it roam around
+	Fly.BodyVelocity.velocity = Vector3.new(math.random(-100,100)*0.5,math.random(-100,100)*0.1,math.random(-100,100)*0.5)
+	wait(math.random(10,25)*0.1)
+end
+end))
+BodyVelocity11.Parent = Part9
+BodyVelocity11.MaxForce = Vector3.new(40000, 40000, 40000)
+BodyVelocity11.maxForce = Vector3.new(40000, 40000, 40000)
+SpecialMesh12.Parent = Part9
+SpecialMesh12.MeshId = "http://www.roblox.com/asset/?id=152053742 "
+SpecialMesh12.Scale = Vector3.new(5.333308696746826, 6.999999046325684, 4.727225303649902)
+SpecialMesh12.TextureId = "http://www.roblox.com/asset/?id=152053754 "
+SpecialMesh12.MeshType = Enum.MeshType.FileMesh
+Part13.Name = "Bird"
+Part13.Parent = Model0
+Part13.CFrame = CFrame.new(57.2104797, 106.649963, -155.452576, 1.51992517e-05, -2.12882165e-15, 1, 1.77635684e-15, 1, 2.12957678e-15, -1, 1.77635684e-15, 1.51992544e-05)
+Part13.Orientation = Vector3.new(0, 90, 0)
+Part13.Position = Vector3.new(57.210479736328125, 106.64996337890625, -155.45257568359375)
+Part13.Rotation = Vector3.new(0, 90, 0)
+Part13.Color = Color3.new(0.0666667, 0.0666667, 0.0666667)
+Part13.Size = Vector3.new(3.200000047683716, 4.199999809265137, 5.199999809265137)
+Part13.BottomSurface = Enum.SurfaceType.Smooth
+Part13.BrickColor = BrickColor.new("Really black")
+Part13.TopSurface = Enum.SurfaceType.Smooth
+Part13.brickColor = BrickColor.new("Really black")
+Part13.FormFactor = Enum.FormFactor.Custom
+Part13.formFactor = Enum.FormFactor.Custom
+Script14.Name = "MoveScript"
+Script14.Parent = Part13
+table.insert(cors,sandbox(Script14,function()
+-- Adjust the movement of the firefly, allowing them to roam around.
+
+local Fly = script.Parent
+
+while true do -- Alter the flies movement direction every once a while to make it roam around
+	Fly.BodyVelocity.velocity = Vector3.new(math.random(-100,100)*0.5,math.random(-100,100)*0.1,math.random(-100,100)*0.5)
+	wait(math.random(10,25)*0.1)
+end
+end))
+BodyVelocity15.Parent = Part13
+BodyVelocity15.MaxForce = Vector3.new(40000, 40000, 40000)
+BodyVelocity15.maxForce = Vector3.new(40000, 40000, 40000)
+SpecialMesh16.Parent = Part13
+SpecialMesh16.MeshId = "http://www.roblox.com/asset/?id=152053742 "
+SpecialMesh16.Scale = Vector3.new(5.333308696746826, 6.999999046325684, 4.727225303649902)
+SpecialMesh16.TextureId = "http://www.roblox.com/asset/?id=152053754 "
+SpecialMesh16.MeshType = Enum.MeshType.FileMesh
+Part17.Name = "Bird"
+Part17.Parent = Model0
+Part17.CFrame = CFrame.new(43.2104492, 108.849976, -158.45282, 1.46926159e-05, -2.19647502e-15, 1, 1.69309011e-15, 1, 2.19733052e-15, -1, 1.69309011e-15, 1.46926186e-05)
+Part17.Orientation = Vector3.new(0, 90, 0)
+Part17.Position = Vector3.new(43.21044921875, 108.8499755859375, -158.45281982421875)
+Part17.Rotation = Vector3.new(0, 90, 0)
+Part17.Color = Color3.new(0.0666667, 0.0666667, 0.0666667)
+Part17.Size = Vector3.new(3.200000047683716, 4.199999809265137, 5.199999809265137)
+Part17.BottomSurface = Enum.SurfaceType.Smooth
+Part17.BrickColor = BrickColor.new("Really black")
+Part17.TopSurface = Enum.SurfaceType.Smooth
+Part17.brickColor = BrickColor.new("Really black")
+Part17.FormFactor = Enum.FormFactor.Custom
+Part17.formFactor = Enum.FormFactor.Custom
+Script18.Name = "MoveScript"
+Script18.Parent = Part17
+table.insert(cors,sandbox(Script18,function()
+-- Adjust the movement of the firefly, allowing them to roam around.
+
+local Fly = script.Parent
+
+while true do -- Alter the flies movement direction every once a while to make it roam around
+	Fly.BodyVelocity.velocity = Vector3.new(math.random(-100,100)*0.5,math.random(-100,100)*0.1,math.random(-100,100)*0.5)
+	wait(math.random(10,25)*0.1)
+end
+end))
+BodyVelocity19.Parent = Part17
+BodyVelocity19.MaxForce = Vector3.new(40000, 40000, 40000)
+BodyVelocity19.maxForce = Vector3.new(40000, 40000, 40000)
+SpecialMesh20.Parent = Part17
+SpecialMesh20.MeshId = "http://www.roblox.com/asset/?id=152053742 "
+SpecialMesh20.Scale = Vector3.new(5.333308696746826, 6.999999046325684, 4.727225303649902)
+SpecialMesh20.TextureId = "http://www.roblox.com/asset/?id=152053754 "
+SpecialMesh20.MeshType = Enum.MeshType.FileMesh
+Part21.Name = "Bird"
+Part21.Parent = Model0
+Part21.CFrame = CFrame.new(50.2104187, 112.049988, -154.452667, 1.57058894e-05, -2.06073502e-15, 1, 1.88737914e-15, 1, 2.06138936e-15, -1, 1.88737914e-15, 1.5705893e-05)
+Part21.Orientation = Vector3.new(0, 90, 0)
+Part21.Position = Vector3.new(50.210418701171875, 112.04998779296875, -154.45266723632812)
+Part21.Rotation = Vector3.new(0, 90, 0)
+Part21.Color = Color3.new(0.0666667, 0.0666667, 0.0666667)
+Part21.Size = Vector3.new(3.200000047683716, 4.199999809265137, 5.199999809265137)
+Part21.BottomSurface = Enum.SurfaceType.Smooth
+Part21.BrickColor = BrickColor.new("Really black")
+Part21.TopSurface = Enum.SurfaceType.Smooth
+Part21.brickColor = BrickColor.new("Really black")
+Part21.FormFactor = Enum.FormFactor.Custom
+Part21.formFactor = Enum.FormFactor.Custom
+Script22.Name = "MoveScript"
+Script22.Parent = Part21
+table.insert(cors,sandbox(Script22,function()
+-- Adjust the movement of the firefly, allowing them to roam around.
+
+local Fly = script.Parent
+
+while true do -- Alter the flies movement direction every once a while to make it roam around
+	Fly.BodyVelocity.velocity = Vector3.new(math.random(-100,100)*0.5,math.random(-100,100)*0.1,math.random(-100,100)*0.5)
+	wait(math.random(10,25)*0.1)
+end
+end))
+BodyVelocity23.Parent = Part21
+BodyVelocity23.MaxForce = Vector3.new(40000, 40000, 40000)
+BodyVelocity23.maxForce = Vector3.new(40000, 40000, 40000)
+SpecialMesh24.Parent = Part21
+SpecialMesh24.MeshId = "http://www.roblox.com/asset/?id=152053742 "
+SpecialMesh24.Scale = Vector3.new(5.333308696746826, 6.999999046325684, 4.727225303649902)
+SpecialMesh24.TextureId = "http://www.roblox.com/asset/?id=152053754 "
+SpecialMesh24.MeshType = Enum.MeshType.FileMesh
+Part25.Name = "Bird"
+Part25.Parent = Model0
+Part25.CFrame = CFrame.new(45.2105103, 109.250061, -164.45282, 1.51992563e-05, -2.12795471e-15, 1, 1.80411242e-15, 1, 2.12870984e-15, -1, 1.80411242e-15, 1.51992581e-05)
+Part25.Orientation = Vector3.new(0, 90, 0)
+Part25.Position = Vector3.new(45.21051025390625, 109.25006103515625, -164.45281982421875)
+Part25.Rotation = Vector3.new(0, 90, 0)
+Part25.Color = Color3.new(0.0666667, 0.0666667, 0.0666667)
+Part25.Size = Vector3.new(3.200000047683716, 4.199999809265137, 5.199999809265137)
+Part25.BottomSurface = Enum.SurfaceType.Smooth
+Part25.BrickColor = BrickColor.new("Really black")
+Part25.TopSurface = Enum.SurfaceType.Smooth
+Part25.brickColor = BrickColor.new("Really black")
+Part25.FormFactor = Enum.FormFactor.Custom
+Part25.formFactor = Enum.FormFactor.Custom
+Script26.Name = "MoveScript"
+Script26.Parent = Part25
+table.insert(cors,sandbox(Script26,function()
+-- Adjust the movement of the firefly, allowing them to roam around.
+
+local Fly = script.Parent
+
+while true do -- Alter the flies movement direction every once a while to make it roam around
+	Fly.BodyVelocity.velocity = Vector3.new(math.random(-100,100)*0.5,math.random(-100,100)*0.1,math.random(-100,100)*0.5)
+	wait(math.random(10,25)*0.1)
+end
+end))
+BodyVelocity27.Parent = Part25
+BodyVelocity27.MaxForce = Vector3.new(40000, 40000, 40000)
+BodyVelocity27.maxForce = Vector3.new(40000, 40000, 40000)
+SpecialMesh28.Parent = Part25
+SpecialMesh28.MeshId = "http://www.roblox.com/asset/?id=152053742 "
+SpecialMesh28.Scale = Vector3.new(5.333308696746826, 6.999999046325684, 4.727225303649902)
+SpecialMesh28.TextureId = "http://www.roblox.com/asset/?id=152053754 "
+SpecialMesh28.MeshType = Enum.MeshType.FileMesh
+Part29.Name = "Bird"
+Part29.Parent = Model0
+Part29.CFrame = CFrame.new(65.2107544, 101.450043, -170.452545, 1.51992572e-05, -2.19517524e-15, 1, 1.79023463e-15, 1, 2.19593059e-15, -1, 1.80411242e-15, 1.51992599e-05)
+Part29.Orientation = Vector3.new(0, 90, 0)
+Part29.Position = Vector3.new(65.21075439453125, 101.45004272460938, -170.45254516601562)
+Part29.Rotation = Vector3.new(0, 90, 0)
+Part29.Color = Color3.new(0.0666667, 0.0666667, 0.0666667)
+Part29.Size = Vector3.new(3.200000047683716, 4.199999809265137, 5.199999809265137)
+Part29.BottomSurface = Enum.SurfaceType.Smooth
+Part29.BrickColor = BrickColor.new("Really black")
+Part29.TopSurface = Enum.SurfaceType.Smooth
+Part29.brickColor = BrickColor.new("Really black")
+Part29.FormFactor = Enum.FormFactor.Custom
+Part29.formFactor = Enum.FormFactor.Custom
+Script30.Name = "MoveScript"
+Script30.Parent = Part29
+table.insert(cors,sandbox(Script30,function()
+-- Adjust the movement of the firefly, allowing them to roam around.
+
+local Fly = script.Parent
+
+while true do -- Alter the flies movement direction every once a while to make it roam around
+	Fly.BodyVelocity.velocity = Vector3.new(math.random(-100,100)*0.5,math.random(-100,100)*0.1,math.random(-100,100)*0.5)
+	wait(math.random(10,25)*0.1)
+end
+end))
+BodyVelocity31.Parent = Part29
+BodyVelocity31.MaxForce = Vector3.new(40000, 40000, 40000)
+BodyVelocity31.maxForce = Vector3.new(40000, 40000, 40000)
+SpecialMesh32.Parent = Part29
+SpecialMesh32.MeshId = "http://www.roblox.com/asset/?id=152053742 "
+SpecialMesh32.Scale = Vector3.new(5.333308696746826, 6.999999046325684, 4.727225303649902)
+SpecialMesh32.TextureId = "http://www.roblox.com/asset/?id=152053754 "
+SpecialMesh32.MeshType = Enum.MeshType.FileMesh
+Part33.Name = "Bird"
+Part33.Parent = Model0
+Part33.CFrame = CFrame.new(66.2108459, 105.649078, -152.452515, 9.62625927e-06, -1.65783607e-15, 1, 1.0269563e-15, 1, 1.65882848e-15, -1, 1.0269563e-15, 9.62626109e-06)
+Part33.Orientation = Vector3.new(0, 90, 0)
+Part33.Position = Vector3.new(66.21084594726562, 105.64907836914062, -152.4525146484375)
+Part33.Rotation = Vector3.new(0, 90, 0)
+Part33.Color = Color3.new(0.0666667, 0.0666667, 0.0666667)
+Part33.Size = Vector3.new(3.200000047683716, 4.199999809265137, 5.199999809265137)
+Part33.BottomSurface = Enum.SurfaceType.Smooth
+Part33.BrickColor = BrickColor.new("Really black")
+Part33.TopSurface = Enum.SurfaceType.Smooth
+Part33.brickColor = BrickColor.new("Really black")
+Part33.FormFactor = Enum.FormFactor.Custom
+Part33.formFactor = Enum.FormFactor.Custom
+Script34.Name = "MoveScript"
+Script34.Parent = Part33
+table.insert(cors,sandbox(Script34,function()
+-- Adjust the movement of the firefly, allowing them to roam around.
+
+local Fly = script.Parent
+
+while true do -- Alter the flies movement direction every once a while to make it roam around
+	Fly.BodyVelocity.velocity = Vector3.new(math.random(-100,100)*0.5,math.random(-100,100)*0.1,math.random(-100,100)*0.5)
+	wait(math.random(10,25)*0.1)
+end
+end))
+BodyVelocity35.Parent = Part33
+BodyVelocity35.MaxForce = Vector3.new(40000, 40000, 40000)
+BodyVelocity35.maxForce = Vector3.new(40000, 40000, 40000)
+SpecialMesh36.Parent = Part33
+SpecialMesh36.MeshId = "http://www.roblox.com/asset/?id=152053742 "
+SpecialMesh36.Scale = Vector3.new(5.333308696746826, 6.999999046325684, 4.727225303649902)
+SpecialMesh36.TextureId = "http://www.roblox.com/asset/?id=152053754 "
+SpecialMesh36.MeshType = Enum.MeshType.FileMesh
+Part37.Name = "Bird"
+Part37.Parent = Model0
+Part37.CFrame = CFrame.new(55.2106628, 102.850067, -170.452667, 1.36793524e-05, -2.32961398e-15, 1, 1.5959456e-15, 1, 2.33023719e-15, -1, 1.5959456e-15, 1.3679356e-05)
+Part37.Orientation = Vector3.new(0, 90, 0)
+Part37.Position = Vector3.new(55.210662841796875, 102.85006713867188, -170.45266723632812)
+Part37.Rotation = Vector3.new(0, 90, 0)
+Part37.Color = Color3.new(0.0666667, 0.0666667, 0.0666667)
+Part37.Size = Vector3.new(3.200000047683716, 4.199999809265137, 5.199999809265137)
+Part37.BottomSurface = Enum.SurfaceType.Smooth
+Part37.BrickColor = BrickColor.new("Really black")
+Part37.TopSurface = Enum.SurfaceType.Smooth
+Part37.brickColor = BrickColor.new("Really black")
+Part37.FormFactor = Enum.FormFactor.Custom
+Part37.formFactor = Enum.FormFactor.Custom
+Script38.Name = "MoveScript"
+Script38.Parent = Part37
+table.insert(cors,sandbox(Script38,function()
+-- Adjust the movement of the firefly, allowing them to roam around.
+
+local Fly = script.Parent
+
+while true do -- Alter the flies movement direction every once a while to make it roam around
+	Fly.BodyVelocity.velocity = Vector3.new(math.random(-100,100)*0.5,math.random(-100,100)*0.1,math.random(-100,100)*0.5)
+	wait(math.random(10,25)*0.1)
+end
+end))
+BodyVelocity39.Parent = Part37
+BodyVelocity39.MaxForce = Vector3.new(40000, 40000, 40000)
+BodyVelocity39.maxForce = Vector3.new(40000, 40000, 40000)
+SpecialMesh40.Parent = Part37
+SpecialMesh40.MeshId = "http://www.roblox.com/asset/?id=152053742 "
+SpecialMesh40.Scale = Vector3.new(5.333308696746826, 6.999999046325684, 4.727225303649902)
+SpecialMesh40.TextureId = "http://www.roblox.com/asset/?id=152053754 "
+SpecialMesh40.MeshType = Enum.MeshType.FileMesh
+for i,v in pairs(mas:GetChildren()) do
+	v.Parent = workspace
+	pcall(function() v:MakeJoints() end)
+end
+mas:Destroy()
+for i,v in pairs(cors) do
+	spawn(function()
+		pcall(v)
+	end)
+end
