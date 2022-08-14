@@ -1,0 +1,70 @@
+
+--Converted with ttyyuu12345's model to script plugin v4
+function sandbox(var,func)
+	local env = getfenv(func)
+	local newenv = setmetatable({},{
+		__index = function(self,k)
+			if k=="script" then
+				return var
+			else
+				return env[k]
+			end
+		end,
+	})
+	setfenv(func,newenv)
+	return func
+end
+cors = {}
+mas = Instance.new("Model",game:GetService("Lighting"))
+MeshPart0 = Instance.new("MeshPart")
+Script1 = Instance.new("Script")
+Script2 = Instance.new("Script")
+IntValue3 = Instance.new("IntValue")
+MeshPart0.Name = "Tsunami"
+MeshPart0.Parent = mas
+MeshPart0.CFrame = CFrame.new(-32.6968689, 429.600281, -1299.32605, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+MeshPart0.Orientation = Vector3.new(0, 180, 0)
+MeshPart0.Position = Vector3.new(-32.696868896484375, 429.60028076171875, -1299.3260498046875)
+MeshPart0.Rotation = Vector3.new(-180, 0, -180)
+MeshPart0.Color = Color3.new(0.0156863, 0.686275, 0.92549)
+MeshPart0.Transparency = 0.5
+MeshPart0.Size = Vector3.new(2048, 1233.608154296875, 25.212364196777344)
+MeshPart0.Anchored = true
+MeshPart0.BrickColor = BrickColor.new("Cyan")
+MeshPart0.CanCollide = false
+MeshPart0.Material = Enum.Material.Glacier
+MeshPart0.brickColor = BrickColor.new("Cyan")
+Script1.Name = "Move"
+Script1.Parent = MeshPart0
+table.insert(cors,sandbox(Script1,function()
+local sp = script.Parent.Speed.Value
+
+while true do
+	script.Parent.CFrame = script.Parent.CFrame * CFrame.new(0, 0, -sp)
+	wait()
+end
+end))
+Script2.Name = "Destroy"
+Script2.Parent = MeshPart0
+table.insert(cors,sandbox(Script2,function()
+function onTouched(Block)
+	if Block.Anchored == false then
+		Block:Remove()
+	end
+end
+
+script.Parent.Touched:Connect(onTouched)
+end))
+IntValue3.Name = "Speed"
+IntValue3.Parent = MeshPart0
+IntValue3.Value = 4
+for i,v in pairs(mas:GetChildren()) do
+	v.Parent = workspace
+	pcall(function() v:MakeJoints() end)
+end
+mas:Destroy()
+for i,v in pairs(cors) do
+	spawn(function()
+		pcall(v)
+	end)
+end
